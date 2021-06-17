@@ -66,8 +66,17 @@ class SleepTrackerFragment : Fragment() {
             ViewModelProvider(this, viewModelFactory).get(SleepTrackerViewModel::class.java)
 
         binding.sleepTrackerViewModel = sleepTrackerViewModel
+        val adapter = SleepNightAdapter()
+
+
+        binding.sleepList.adapter = adapter
         binding.setLifecycleOwner(this)
 
+        sleepTrackerViewModel.nights.observe(viewLifecycleOwner, Observer{
+            it.let{
+                adapter.data = it
+            }
+        })
 
         // Add an Observer on the state variable for Navigating when STOP button is pressed.
         sleepTrackerViewModel.navigateToSleepQuality.observe(viewLifecycleOwner, Observer { night ->

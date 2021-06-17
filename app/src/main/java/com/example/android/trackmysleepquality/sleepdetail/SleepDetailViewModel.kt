@@ -47,7 +47,7 @@ class SleepDetailViewModel(
     fun getNight() = night
 
     init {
-        night.addSource(database.getNightWithId(sleepNightKey), night::setValue)
+//        night.addSource(database.getNightWithId(sleepNightKey), night::setValue)
     }
 
     /**
